@@ -99,6 +99,35 @@ header {
                     border-bottom: 2px solid $red;
                 }
             }
+
+            li.nav-item.dropdown.show {
+
+                .dropdown-menu {
+                    border-radius: 0;
+                }
+
+                li.nav-item {
+                    border-bottom: 1px solid $red;
+
+                    &.active,
+                    &:active,
+                    &:hover {
+                        background-color: $red;
+                        border-bottom: none;
+                    }
+
+                    .nav-link {
+                        padding-right: 1rem;
+                        padding-left: 1rem;
+                    }
+
+                    &.active .nav-link,
+                    &.active .nav-link:hover {
+                        border-bottom: none;
+                        color: $white;
+                    }
+                }
+            }
         }
     }
 }

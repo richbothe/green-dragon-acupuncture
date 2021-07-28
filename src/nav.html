@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{* Main Menu *}
+{if !isset($depth)}{$depth=0}{/if}
+{strip}
+
+{if $depth == 0}
+<ul class="navbar-nav">
+{else}
+<ul class="dropdown-menu">
+{/if}
+
+{$depth=$depth+1}
+{foreach $nodes as $node}
+    {* setup classes for the anchor and list item *}
+    {$liclass=[]}
+    {$aclass=[]}
+
+    {* the first child gets a special class *}
+    {*if $node@first && $node@total > 1}{$liclass[]='first_child'}{/if*}
+
+    {* the last child gets a special class *}
+    {*if $node@last && $node@total > 1}{$liclass[]='last_child'}{/if*}
+
+    {if $node->current}
+    {* this is the current page *}
+    {$liclass[]='active'}
+    {$aclass[]='nav-link'}
+    {/if}
+    {if $node->has_children}
+    {* this is a parent page *}
+    {$liclass[]='nav-item dropdown'}
+    {$aclass[]='nav-link dropdown-toggle'}
+    {/if}
+    {if $node->parent}
+    {* this is a parent of the current page *}
+    {$liclass[]='active'}
+    {$aclass[]='nav-link'}
+    {/if}
+
+    {* build the menu item from the node *}
+    {if $node->type == 'sectionheader'}
+    <li class='{implode(' ',$liclass)}'><a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$node->menutext}</a>
+        {if isset($node->children)}
+        {include file=$smarty.template nodes=$node->children}
+        {/if}
+    </li>
+    {else if $node->type == 'separator'}
+    <li style="list-style-type: none;"><hr class="menu_separator"/></li>
+    {else}
+    {* regular item *}
+    <li class="nav-item {implode(' ',$liclass)}">
+        <a class="nav-link" href="{$node->url}"{if $node->target ne ""} target="{$node->target}"{/if}>{$node->menutext}</a>
+        {if isset($node->children)}
+        {include file=$smarty.template nodes=$node->children}
+        {/if}
+    </li>
+    {/if}
+{/foreach}
+{$depth=$depth-1}
+</ul>
+
+{if $depth == 0}
+{*<div class="clearb"></div>*}
+</div>
+{/if}
+{/strip}
+</body>
+</html>

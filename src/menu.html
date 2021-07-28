@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <span class="logo">
+                <img class="img-fluid logo-sm" src="uploads/images/logo-icon-sm.png">
+                <img class="img-fluid logo-lg" src="uploads/images/banner.gif">
+            </span>
+            <span class="logo-text">Green Dragon Acupuncture</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            MENU
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {* CSS classes used in this template:
+            .activeparent - The top level parent when a child is the active/current page
+            li
+            .active0n h3 - n is the depth/level of the node. To style the active page for each level separately. The active page is not clickable.
+            .clearfix - Used for the unclickable h3 to use the entire width of the li, just like the anchors. See the Tools stylesheet in the default CMSMS installation.
+            li.sectionheader h3 - To style section header
+            li.separator - To style the ruler for the separator *} 
+            
+            {assign var='number_of_levels' value=10000}
+            {if isset($menuparams.number_of_levels)}
+                {assign var='number_of_levels' value=$menuparams.number_of_levels}
+            {/if}
+            
+            {if $count > 0}
+            <ul class="navbar-nav">
+            {foreach from=$nodelist item=node}
+            {if $node->depth > $node->prevdepth}
+            {repeat string="<ul>" times=$node->depth-$node->prevdepth}
+            {elseif $node->depth < $node->prevdepth}
+            {repeat string="</li></ul>" times=$node->prevdepth-$node->depth}
+            </li>
+            {elseif $node->index > 0}</li>
+            {/if}
+            
+            {if $node->parent == true or $node->current == true}
+                {assign var='classes' value='menuactive'}
+                {if $node->parent == true}
+                {assign var='classes' value='menuactive menuparent'}
+                {/if}
+                {if $node->children_exist == true and $node->depth < $number_of_levels}
+                {assign var='classes' value=$classes|cat:' parent'}
+                {/if}
+                <li class="{$classes}"><a class="{$classes}" href="{$node->url}"><span>{$node->menutext}</span></a>
+            
+            {elseif $node->children_exist == true and $node->depth < $number_of_levels and $node->type != 'sectionheader' and $node->type != 'separator'}
+            <li class="parent"><a class="parent" href="{$node->url}"><span>{$node->menutext}</span></a>
+            
+            {elseif $node->current == true}
+            <li class="currentpage"><h3><span>{$node->menutext}</span></h3>
+            
+            {elseif $node->type == 'sectionheader'}
+            <li class="sectionheader"><span>{$node->menutext}</span>
+            
+            {elseif $node->type == 'separator'}
+            <li class="separator" style="list-style-type: none;"> <hr />
+            
+            {else}
+            <li><a href="{$node->url}"><span>{$node->menutext}</span></a>
+            
+            {/if}
+            
+            {/foreach}
+            {repeat string="</li></ul>" times=$node->depth-1}</li>
+            </ul>
+            {/if}
+        </div>
+    </div>
+</nav>
+</body>
+</html>
