@@ -1,0 +1,22 @@
+.cta-buttons {
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    display: block;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+}

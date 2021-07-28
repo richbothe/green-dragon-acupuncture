@@ -1,0 +1,27 @@
+footer {
+    border-top: 2px solid $white;
+    padding: 1rem 0;
+    background-color: $beige;
+
+    // @media (min-width: 768px) {
+    //     position: absolute;
+    //     bottom: 0;
+    //     width: 100%;
+    // }
+
+    @media (min-width: 1200px) {
+        padding: 3rem 0;
+    }
+    
+    .fab {
+        color: $yellow;
+        font-size: 3rem;
+    }
+    p {
+        text-align: center;
+    }
+
+    a {
+        color: $body-color;
+    }
+}

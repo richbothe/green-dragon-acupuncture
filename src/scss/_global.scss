@@ -1,0 +1,22 @@
+body {
+  background-color: $beige;
+  @include rfs(16);
+
+  .header,
+  .content {
+    background-color: $yellow;
+  }
+
+  hr {
+    border-color: $beige;
+    border-width: 1px;
+  }
+
+  a {
+    color: $red;
+  }
+
+  .btn {
+    border-radius: 0;
+  }
+}

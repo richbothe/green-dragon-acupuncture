@@ -1,0 +1,104 @@
+header {
+
+    border-bottom: 1px solid $beige;
+
+    @media (min-width: 768px) {
+        border-bottom-width: 2px;
+    }
+
+    .navbar {
+        .container {
+            display:  flex;
+            justify-content: space-between;
+
+            @media (min-width: 768px) {
+                display: block;
+                text-align: center;
+                margin: 0 auto;
+            }
+            
+            @media (min-width: 992px) {
+                flex-wrap: wrap;
+            }
+        }
+        a.navbar-brand {
+            color: $red;
+            font-size: 15px;
+            font-weight: $font-weight-bold;
+            margin-right: 0;
+
+            .logo-sm {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+
+                @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+
+            .logo-lg {
+                display: none;
+
+                @media (min-width: 768px) {
+                    display: block;
+                }
+            }
+
+            .logo-text {
+                color: #000;
+
+                @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+        }
+
+        .navbar-toggler {
+            color: $black;
+            border: 1px solid $black;
+            border-radius: 0;
+            font-size: 14px;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+
+            &:hover {
+                background-color: $green;
+                color: $white;
+            }
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 0 0.2rem rgba(106, 126, 6, 0.5);
+            }
+        }
+
+        ul.navbar-nav {
+            @media (min-width: 992px) {
+                flex: 1;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            li.nav-item {
+                padding: 0;
+
+                a.nav-link {
+                    color: $green;
+
+                    &:hover {
+                        color: $white;
+                        border-bottom: 2px solid $red;
+                    }
+
+                    @media (min-width: 992px) {
+                        @include rfs(20);
+                    }                    
+                }
+
+                &.active a {
+                    border-bottom: 2px solid $red;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+// Custom bootstrap variable overrides
+@import 'bs-variables';
+
+// Bootstrap and its default variables
+@import 'bootstrap/bootstrap';
+@import 'global';
+@import 'header';
+@import 'footer';
+@import 'main';
+@import 'buttons';
