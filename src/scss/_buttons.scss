@@ -1,21 +1,16 @@
 .cta-buttons {
-  margin-bottom: 1rem;
 
   @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 3rem;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .btn {
     display: block;
     margin-bottom: 1rem;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-
     @media (min-width: 768px) {
+      display: unset;
       margin-bottom: 0;
     }
   }
